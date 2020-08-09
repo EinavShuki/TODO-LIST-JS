@@ -95,35 +95,36 @@ function filterTodo(event) {
   }); //since we using noselist we able to do foreach loop
 }
 
-function checkIfTodo(todos)
-{
-    if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
-  }
-}
-
-//local storage
-function saveTodo(todo) {
+function checkIfTodo() {
   let todos;
   if (localStorage.getItem("todos") === null) {
     todos = [];
   } else {
     todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
   }
+  return todos;
+}
+
+//local storage
+function saveTodo(todo) {
+  let todos = checkIfTodo();
+  // if (localStorage.getItem("todos") === null) {
+  //   todos = [];
+  // } else {
+  //   todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
+  // }
 
   todos.push(todo);
   localStorage.setItem("todos", JSON.stringify(todos)); //converts the object to a stringb in order to storage it in we
 }
 //incase of refreshing the page we can still see the toso list
 function getTodos() {
-  let todos;
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
-  }
+  let todos = checkIfTodo();
+  // if (localStorage.getItem("todos") === null) {
+  //   todos = [];
+  // } else {
+  //   todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
+  // }
   todos.forEach((todo) => {
     const todoDiv = document.createElement("div");
     //adding class
@@ -156,12 +157,12 @@ function getTodos() {
 
 function removeFromLocalTodos(todo) {
   //checking if there is something
-  let todos;
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
-  }
+  let todos = checkIfTodo();
+  // if (localStorage.getItem("todos") === null) {
+  //   todos = [];
+  // } else {
+  //   todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
+  // }
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex), 1); //deleting 1 element in the place i mentioned
   localStorage.setItem("todos", JSON.stringify(todos)); //localStorage.setItem(<itemName>,<itemValue>),
