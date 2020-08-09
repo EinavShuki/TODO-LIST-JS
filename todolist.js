@@ -95,14 +95,14 @@ function filterTodo(event) {
   }); //since we using noselist we able to do foreach loop
 }
 
-// function checkIfTodo(todos)
-// {
-//     if (localStorage.getItem("todos") === null) {
-//     todos = [];
-//   } else {
-//     todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
-//   }
-// }
+function checkIfTodo(todos)
+{
+    if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos")); //converts the string to object
+  }
+}
 
 //local storage
 function saveTodo(todo) {
